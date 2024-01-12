@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClInclude Include="basic_shared_ptr.h" />
     <ClInclude Include="generic_wrapper.h" />
-    <ClInclude Include="Header.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleApplication2.cpp" />
