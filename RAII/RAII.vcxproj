@@ -128,10 +128,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="basic_shared_ptr.h" />
+    <ClInclude Include="basic_unique_ptr.h" />
+    <ClInclude Include="FILE_ptr.h" />
     <ClInclude Include="generic_wrapper.h" />
+    <ClInclude Include="simple_lock.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ConsoleApplication2.cpp" />
+    <ClCompile Include="someclass.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -18,7 +18,7 @@ public:
 	* Move constructor.
 	* Move Object from other wrapper to this one.
 	*/
-	generic_wrapper(generic_wrapper&& g) {
+	generic_wrapper(generic_wrapper&& g) noexcept {
 		_data = g._data;
 		g._data = nullptr;
 	}
@@ -26,8 +26,8 @@ public:
 	* Move assignment.
 	* Swap contents of wrappers.
 	*/
-	generic_wrapper& operator=(generic_wrapper&& g){
-		std::swap(_data,g._data)
+	generic_wrapper& operator=(generic_wrapper&& g) noexcept{
+		std::swap(_data, g._data);
 		return *this;
 	}
 	/*
@@ -48,8 +48,7 @@ public:
 	*/
 	template<class... Args>
 	static generic_wrapper<T> make_wrapped(Args... args) {
-		generic_wrapper<T> t(args...);
-		return t;
+		return generic_wrapper<T>(args...);
 	}
 	/*
 	* Destructor.
@@ -59,6 +58,7 @@ public:
 		if (_data != nullptr) {
 			delete _data;
 		}
+		std::cout << "wrapper destructor" << std::endl;
 	}
 	/*
 	* Generally not a good idea to directly expose the pointer, but here for ease of use.

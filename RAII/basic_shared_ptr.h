@@ -87,15 +87,17 @@ public:
 			if (*_count == 0) {
 				delete _data;
 				delete _count;
-				std::cout << "deleted" << std::endl;
+				std::cout << "shared object deleted" << std::endl;
 			}
 		}
 	}
 	/*
-	* Not reccomended to directly expose the pointer but here for ease of use
-	* Instead, (->) operator could be overriden to return the underlying object.
+	* Expose _data pointer/underlying object
 	*/
-	T* expose() {
+	T& operator*() const {
+		return *_data;
+	}
+	T* operator->() const {
 		return _data;
 	}
 	/*
