@@ -58,7 +58,7 @@ public:
 		if (_data != nullptr) {
 			delete _data;
 		}
-		std::cout << "wrapper destructor" << std::endl;
+		std::cout << "wrapper destructor called" << std::endl;
 	}
 	/*
 	* Generally not a good idea to directly expose the pointer, but here for ease of use.

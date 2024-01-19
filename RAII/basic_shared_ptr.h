@@ -7,10 +7,10 @@ template<class T>
 class basic_shared_ptr {
 private:
 	T* _data; //Object held by the pointer
-	int* _count; //Count of Pointers referencing the object
-	//has to be a pointer for easy copying/swapping later
+	int* _count; //Count of references to object
+	//dynamically allocated, as otherwise it could not be shared across pointers
 	/*
-	* Basic constructor with argument forwarding.
+	* Basic constructor with varidic argument list.
 	*/
 	template<class... Args>
 	basic_shared_ptr(Args... args) {
@@ -75,7 +75,7 @@ public:
 
 	/*
 	* Destructor.
-	* Decrements the cound of a non empty pointer and deletes it once it reaches zero,
+	* Decrements the count of a non empty pointer and deletes it once it reaches zero,
 	* i.e. when no other pointers to the object exist anymore.
 	* Guarantees that object is destroyed at some point and that delete is not called multiple times.
 	* This is only the case in non concurrent programs.
@@ -83,11 +83,11 @@ public:
 	~basic_shared_ptr() {
 		if (_data != nullptr) {
 			(*_count)--;
-			std::cout << "count now:" << *_count << std::endl;
+			std::cout << "Shared count now:" << *_count << std::endl;
 			if (*_count == 0) {
 				delete _data;
 				delete _count;
-				std::cout << "shared object deleted" << std::endl;
+				std::cout << "Shared object deleted" << std::endl;
 			}
 		}
 	}

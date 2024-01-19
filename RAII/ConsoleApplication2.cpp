@@ -81,16 +81,22 @@ void basicSharedTest() {
 void uniqueTest() {
 	auto u1 = basic_unique_ptr<someclass>(new someclass(1, 'c'));
 	auto u2 = std::move(u1);
+	//Moved from pointer used for testing purposes only. Not advised.
+	std::cout << "u1 empty?: " << ((u1.operator->()) == nullptr) << std::endl;
+	std::cout << "u2 contains: "<< u2->_b << std::endl;
 	auto u3 = basic_unique_ptr<someclass>(new someclass(2, 'd'));
 	std::swap(u2, u3);
-
+	std::cout << "u2 contains: " << u2->_b << std::endl;
+	std::cout << "u3 contains: " << u3->_b << std::endl;
+	std::swap(u2, u3);
+	std::cout << "u2 contains: " << u2->_b << std::endl;
+	std::cout << "u3 contains: " << u3->_b << std::endl;
 }
 
 int main()
 {
 	int* a = new int(5);
-		delete a;
-		delete a;
+	
 	mutexTest();
 	genericWrapperTest();
 	basicSharedTest();

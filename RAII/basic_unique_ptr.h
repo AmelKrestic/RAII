@@ -14,7 +14,7 @@ public:
 	basic_unique_ptr(T* t = nullptr) :_data(t) {}
 	~basic_unique_ptr() {
 		delete _data;
-		std::cout << "pointer deleted" << std::endl;
+		std::cout << "pointer destructor called" << std::endl;
 	}
 	//Copy Constructor and assignment made unavailable 
 	//data should only belong to this object, so cannot be copied
